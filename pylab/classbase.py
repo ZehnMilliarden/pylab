@@ -47,6 +47,11 @@ class B(Base):
         return self.__is_work__
 
 
+class C(object):
+    def __init__(self):
+        pass
+
+
 class mgr(object):
 
     def __init__(self):
@@ -55,6 +60,10 @@ class mgr(object):
 
     # 注册管理任务线类， cls 是一个类的实现
     def register_class(self, cls) -> bool:
+
+        if issubclass(cls, Base) is False:
+            print(f'{cls} is subclass {Base} is False')
+            return False
 
         if self.__Base_cls__.get(cls.__name__) is None:
             self.__Base_cls__[cls.__name__] = cls
@@ -86,6 +95,8 @@ if __name__ == '__main__':
     obj_mgr = mgr()
     obj_mgr.register_class(A)
     obj_mgr.register_class(B)
+
+    obj_mgr.register_class(C)
 
     obj1: Base = obj_mgr.get_by_name(A.__name__)
 
