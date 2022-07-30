@@ -75,8 +75,7 @@ class mgr(object):
         obj = self.__Base_cls__[name]()
 
         if objlists is None:
-            objs: list[Base] = [obj]
-            self.__Base_obj__[name] = objs
+            self.__Base_obj__[name] = [obj]
         else:
             self.__Base_obj__[name].append(obj)
 
